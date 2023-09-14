@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: darkblue;
+            color: white;
+            text-align: center;
+        }
+        header {
+            background-color: rgb(43, 11, 149);
+            color: white;
+            padding: 20px;
+        }
+        header h1 {
+            font-size: 30px;
+            margin: 0;
+        }
+        header p {
+            font-size: 18px;
+        }
+        label {
+            font-weight: bold;
+            color: white; /* Adicionado para melhor legibilidade */
+        }
+        p.error {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Aqui você pode adicionar o código CSS para as imagens */
+        .imagem-padrao {
+            width: 300px; /* Largura desejada */
+            height: 200px; /* Altura desejada */
+            /* Outras propriedades de estilo, se necessário */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Calculadora</h1>
+        <p>Criado por Artur Bitencourt</p>
+    </header>
+
+    <!-- 1) Calculo de Idade -->
+    <h2>1) Cálculo de Idade</h2>
+    <label for="anoNascimento">Ano de Nascimento:</label>
+    <input type="text" id="anoNascimento">
+    <label for="anoAtual">Ano Atual:</label>
+    <input type="text" id="anoAtual">
+    <button onclick="calcularIdade()">Calcular Idade</button>
+    <p>Idade atual: <span id="idadeAtual"></span> anos</p>
+    <p>Idade em 2050: <span id="idade2050"></span> anos</p>
+    <p class="error" id="erroIdade"></p>
+    <img src="idade_image.png" alt="Imagen representativa do calculo da idade" class="imagem-padrao">
+
+    <!-- 2) Aumento de Salário -->
+    <h2>2) Aumento de Salário</h2>
+    <label for="salario">Salário:</label>
+    <input type="text" id="salario">
+    <button onclick="calcularNovoSalario()">Calcular Novo Salário</button>
+    <p>Novo Salário: R$ <span id="novoSalario"></span></p>
+    <p class="error" id="erroSalario"></p>
+    <img src="salario_image.png" alt="Imagem representativa do cálculo de aumento de salário" class="imagem-padrao">
+
+
+    <!-- 3) Conversão de Temperatura -->
+    <h2>3) Conversão de Temperatura</h2>
+    <label for="temperaturaCelsius">Temperatura em Celsius:</label>
+    <input type="text" id="temperaturaCelsius">
+    <button onclick="converterParaFahrenheit()">Converter para Fahrenheit</button>
+    <p>Temperatura em Fahrenheit: <span id="temperaturaFahrenheit"></span> °F</p>
+    <p class="error" id="erroTemperatura"></p>
+    <img src="temperatura_image.png" alt="Imagem representativa da conversão de temperatura" class="imagem-padrao">
+
+    <!-- 4) Média de Notas -->
+    <h2>4) Média de Notas</h2>
+    <label for="nota1">Nota 1:</label>
+    <input type="text" id="nota1">
+    <label for="nota2">Nota 2:</label>
+    <input type="text" id="nota2">
+    <label for="nota3">Nota 3:</label>
+    <input type="text" id="nota3">
+    <button onclick="calcularMedia()">Calcular Média</button>
+    <p>Média das notas: <span id="mediaNotas"></span></p>
+    <p class="error" id="erroNotas"></p>
+    <img src="notas_image.png" alt="Imagem representativa do cálculo da média de notas" class="imagem-padrao">
+
+    <!-- 5) Teorema de Pitágoras -->
+    <h2>5) Teorema de Pitágoras</h2>
+    <label for="cateto1">Cateto 1:</label>
+    <input type="text" id="cateto1">
+    <label for="cateto2">Cateto 2:</label>
+    <input type="text" id="cateto2">
+    <button onclick="calcularHipotenusa()">Calcular Hipotenusa</button>
+    <p>Valor da Hipotenusa: <span id="hipotenusa"></span></p>
+    <p class="error" id="erroHipotenusa"></p>
+    <img src="pitagoras_image.png" alt="Imagem representativa do Teorema de Pitágoras" class="imagem-padrao">
+
+    <!-- 6) Cálculos de Esfera -->
+    <h2>6) Cálculos de Esfera</h2>
+    <label for="raio">Raio:</label>
+    <input type="text" id="raio">
+    <button onclick="calcularEsfera()">Calcular</button>
+    <p>Comprimento da Esfera: <span id="comprimentoEsfera"></span></p>
+    <p>Área da Esfera: <span id="areaEsfera"></span></p>
+    <p>Volume da Esfera: <span id="volumeEsfera"></span></p>
+    <p class="error" id="erroRaio"></p>
+    <img src="esfera_image.png" alt="Imagem representativa dos cálculos de esfera" class="imagem-padrao">
+
+    <script>
+       // Função para calcular a idade
+       function calcularIdade() {
+            const anoNascimento = parseInt(document.getElementById("anoNascimento").value);
+            const anoAtual = parseInt(document.getElementById("anoAtual").value);
+            const idadeAtual = anoAtual - anoNascimento;
+            const idade2050 = 2050 - anoNascimento;
+
+            if (isNaN(idadeAtual) || isNaN(idade2050)) {
+                document.getElementById("erroIdade").textContent = "Por favor, insira anos válidos.";
+            } else {
+                document.getElementById("erroIdade").textContent = "";
+                document.getElementById("idadeAtual").textContent = idadeAtual;
+                document.getElementById("idade2050").textContent = idade2050;
+            }
+        }
+
+        // Função para calcular o novo salário
+        function calcularNovoSalario() {
+            const salarioAtual = parseFloat(document.getElementById("salario").value);
+            const aumentoPercentual = 10; // Exemplo de aumento de 10%
+            const novoSalario = salarioAtual * (1 + aumentoPercentual / 100);
+
+            if (isNaN(salarioAtual)) {
+                document.getElementById("erroSalario").textContent = "Por favor, insira um salário válido.";
+            } else {
+                document.getElementById("erroSalario").textContent = "";
+                document.getElementById("novoSalario").textContent = novoSalario.toFixed(2); // Exibir com duas casas decimais
+            }
+        }
+
+        // Função para converter temperatura de Celsius para Fahrenheit
+        function converterParaFahrenheit() {
+            const temperaturaCelsius = parseFloat(document.getElementById("temperaturaCelsius").value);
+            const temperaturaFahrenheit = (temperaturaCelsius * 9/5) + 32;
+
+            if (isNaN(temperaturaCelsius)) {
+                document.getElementById("erroTemperatura").textContent = "Por favor, insira uma temperatura válida em Celsius.";
+            } else {
+                document.getElementById("erroTemperatura").textContent = "";
+                document.getElementById("temperaturaFahrenheit").textContent = temperaturaFahrenheit.toFixed(2) + " °F";
+            }
+        }
+
+        // Função para calcular a média de notas
+        function calcularMedia() {
+            const nota1 = parseFloat(document.getElementById("nota1").value);
+            const nota2 = parseFloat(document.getElementById("nota2").value);
+            const nota3 = parseFloat(document.getElementById("nota3").value);
+            const media = (nota1 + nota2 + nota3) / 3;
+
+            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
+                document.getElementById("erroNotas").textContent = "Por favor, insira notas válidas.";
+            } else {
+                document.getElementById("erroNotas").textContent = "";
+                document.getElementById("mediaNotas").textContent = media.toFixed(2);
+            }
+        }
+
+        // Função para calcular a hipotenusa com o Teorema de Pitágoras
+        function calcularHipotenusa() {
+            const cateto1 = parseFloat(document.getElementById("cateto1").value);
+            const cateto2 = parseFloat(document.getElementById("cateto2").value);
+            const hipotenusa = Math.sqrt(cateto1 * cateto1 + cateto2 * cateto2);
+
+            if (isNaN(cateto1) || isNaN(cateto2)) {
+                document.getElementById("erroHipotenusa").textContent = "Por favor, insira valores válidos para os catetos.";
+            } else {
+                document.getElementById("erroHipotenusa").textContent = "";
+                document.getElementById("hipotenusa").textContent = hipotenusa.toFixed(2);
+            }
+        }
+
+        // Função para calcular comprimento, área e volume de uma esfera
+        function calcularEsfera() {
+            const raio = parseFloat(document.getElementById("raio").value);
+            const comprimento = 2 * Math.PI * raio;
+            const area = 4 * Math.PI * raio * raio;
+            const volume = (4/3) * Math.PI * raio * raio * raio;
+
+            if (isNaN(raio)) {
+                document.getElementById("erroRaio").textContent = "Por favor, insira um valor válido para o raio.";
+            } else {
+                document.getElementById("erroRaio").textContent = "";
+                document.getElementById("comprimentoEsfera").textContent = comprimento.toFixed(2);
+                document.getElementById("areaEsfera").textContent = area.toFixed(2);
+                document.getElementById("volumeEsfera").textContent = volume.toFixed(2);
+            }
+        }
+    </script>
+</body>
+</html>
